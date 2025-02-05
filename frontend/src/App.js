@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.jsx
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import VideoChat from './components/VideoChat';
 
-function App() {
+// This component defines the routes and handles redirection after login.
+const AppRoutes = () => {
+  // Assume your custom hook returns the token (or null/undefined if not logged in)
+
+ 
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+       <Route path="/videochat" element={<VideoChat/>}/>
+        <Route
+          path="/"
+          element={
+            <div>
+              <h1>Welcome to Video Chat App</h1>
+              <div>
+                <Link to="/register">
+                  <button>Register</button>
+                </Link>
+                <Link to="/login">
+                  <button>Login</button>
+                </Link>
+              </div>
+            </div>
+          }
+        />
+      </Routes>
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+};
 
 export default App;
